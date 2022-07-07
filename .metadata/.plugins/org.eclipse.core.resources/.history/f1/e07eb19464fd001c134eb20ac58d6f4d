@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:google-sheets="http://www.mulesoft.org/schema/mule/google-sheets"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/google-sheets http://www.mulesoft.org/schema/mule/google-sheets/current/mule-google-sheets.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ece302d3-0214-4602-9ec7-afef8f353600" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="ms-reports-prc-apiFlow" doc:id="158a38cb-9827-4ea1-955c-fe210fe1b986" >
+		<http:listener doc:name="GET /list" doc:id="fdf8bfdf-88eb-4bdc-a482-3fb6bd2b1a8e" config-ref="HTTP_Listener_config" path="/list"/>
+		<set-payload value="#[[
+  {
+     &quot;field1&quot;: 'value1',
+     &quot;field2&quot;: 'value2',
+     &quot;field3&quot;: 'value3',
+     &quot;field4&quot;: 'value4',
+     &quot;field5&quot;: 'value5',
+  }
+]]" doc:name="Array Objects" doc:id="58b58d22-3bb6-451e-b38a-a10c7021a4e5" />
+		<ee:transform doc:name="Objects to JSON" doc:id="6e6ad749-d8e8-4a68-b616-073ce573d333">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

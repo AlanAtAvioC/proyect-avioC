@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+org.mule.tooling.amc.apps={"userProjectMap"\:{"AlanAtAVIO"\:{"ms-reports-prc-api"\:"{\\"applicationName\\"\:\\"ms-reports-prc-api\\",\\"muleRuntime\\"\:\\"4.4.0\\",\\"properties\\"\:{\\"anypoint.platform.config.analytics.agent.enabled\\"\:\\"true\\"}}"}}}
+org.mule.tooling.ui.properties.enable.api.dependencies=true
